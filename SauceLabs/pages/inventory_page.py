@@ -14,6 +14,7 @@ class InventoryPage(BasePage):
     logout_button = {'by': By.ID, 'value': 'logout_sidebar_link'}
     reset_app_state_button = {'by': By.ID, 'value': 'reset_sidebar_link'}
     hamburger_cross_button = {'by': By.ID, 'value': 'react-burger-cross-btn'}
+    shopping_cart_badge = {'by': By.CSS_SELECTOR, 'value': '.shopping_cart_badge'}
     # filter objects
     filter_dropdown = {'by': By.CSS_SELECTOR, 'value': '.product_sort_container'}
     filter_option_a_to_z = {'by': By.CSS_SELECTOR, 'value': 'option:nth-child(1)'}
@@ -62,36 +63,36 @@ class InventoryPage(BasePage):
         self.click(self.filter_dropdown)
         self.click(self.filter_option_high_to_low)
 
-    def get_current_inventory_item_elements(self, item_name):
+    def get_specific_inventory_item_elements(self, position):
         items = self.find_all(self.inventory_all_items)
-        current_item = {}
-        for index in range(len(items)):
-            if self.get_text_within_element(self.inventory_item_title, items[index]) == item_name:
-                current_item['img'] = self.find_within_element(self.inventory_item_img, items[index])
-                current_item['title'] = self.find_within_element(self.inventory_item_title, items[index])
-                current_item['description'] = self.find_within_element(self.inventory_item_description, items[index])
-                current_item['price'] = self.find_within_element(self.inventory_item_price, items[index])
-                current_item['button'] = self.find_within_element(self.inventory_item_button, items[index])
-                return current_item
+        current_item = {'img': self.find_within_element(self.inventory_item_img, items[position]),
+                        'title': self.find_within_element(self.inventory_item_title, items[position]),
+                        'description': self.find_within_element(self.inventory_item_description, items[position]),
+                        'price': self.find_within_element(self.inventory_item_price, items[position]),
+                        'button': self.find_within_element(self.inventory_item_button, items[position])}
+        return current_item
 
-    def click_on_inventory_item_img(self, item_name):
-        current_item = self.get_current_inventory_item_elements(item_name)
-        self.click_within_element(current_item['img'])
-
-    def click_on_inventory_item_title(self, item_name):
-        current_item = self.get_current_inventory_item_elements(item_name)
-        self.click_within_element(current_item['title'])
-
-    def click_on_inventory_item_button(self, item_name):
-        current_item = self.get_current_inventory_item_elements(item_name)
-        self.click_within_element(current_item['button'])
-
-    # subir nivel de abstraccion y hacerlo mas general
-    def get_current_inventory_item_text(self, item_name):
-        current_item = self.get_current_inventory_item_elements(item_name)
+    def get_specific_inventory_item_text(self, position):
+        current_item = self.get_specific_inventory_item_elements(position)
         for key in current_item:
             current_item[key] = current_item[key].text
         return current_item
+
+    def click_on_inventory_item_img(self, position):
+        current_item = self.get_specific_inventory_item_elements(position)
+        self.click_within_element(current_item['img'])
+
+    def click_on_inventory_item_title(self, position):
+        current_item = self.get_specific_inventory_item_elements(position)
+        self.click_within_element(current_item['title'])
+
+    def click_on_inventory_item_button(self, position):
+        current_item = self.get_specific_inventory_item_elements(position)
+        self.click_within_element(current_item['button'])
+
+    def get_shopping_cart_number(self):
+        return self.get_text(self.shopping_cart_badge)
+
 
 
 

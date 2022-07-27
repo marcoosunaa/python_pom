@@ -1,5 +1,6 @@
 from selenium.webdriver.common.by import By
 
+from SauceLabs.env import constants
 from SauceLabs.pages.base_page import BasePage
 
 
@@ -9,10 +10,13 @@ class DetailsPage(BasePage):
     details_item_title = {'by': By.CSS_SELECTOR, 'value': '.inventory_details_name'}
     details_item_description = {'by': By.CSS_SELECTOR, 'value': '.inventory_details_desc'}
     details_item_price = {'by': By.CSS_SELECTOR, 'value': '.inventory_details_price'}
-    details_item_button = {'by': By.CSS_SELECTOR, 'value': '#add-to-cart-sauce-labs-fleece-jacket'}
+    details_item_button = {'by': By.CSS_SELECTOR, 'value': '.btn_primary'}
 
     def __init__(self, driver):
         super().__init__(driver)
+
+    def validate_details_url(self):
+        return True if constants.DETAILS_URL in self.get_url() else False
 
     def get_details_text(self):
         current_item = {

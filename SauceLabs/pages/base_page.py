@@ -1,9 +1,16 @@
-from selenium.webdriver.remote.webelement import WebElement
+import random
+
+from selenium.webdriver.common.by import By
 
 
 class BasePage:
     def __init__(self, driver):
         self.driver = driver
+
+    @staticmethod
+    def get_random_number():
+        number = random.randint(0, 5)
+        return number
 
     def visit(self, url):
         self.driver.get(url)
@@ -44,4 +51,3 @@ class BasePage:
 
     def get_text(self, locator):
         return self.find(locator).text
-

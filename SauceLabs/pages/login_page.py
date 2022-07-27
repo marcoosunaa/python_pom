@@ -1,5 +1,6 @@
 from selenium.webdriver.common.by import By
 
+from SauceLabs.env import constants
 from SauceLabs.pages.base_page import BasePage
 
 import time
@@ -26,3 +27,5 @@ class LoginPage(BasePage):
     def validate_logout(self):
         return self.is_displayed(self.submit_button)
 
+    def validate_login_url(self):
+        return self.get_url() == constants.SAUCE_DEMO_URL

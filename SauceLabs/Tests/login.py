@@ -23,8 +23,11 @@ class LoginTest(unittest.TestCase):
         login_page.login(constants.VALID_USER, constants.VALID_PASSWORD)
         inventory_page = InventoryPage(self.driver)
         self.assertTrue(inventory_page.validate_login())
-        # crear test case nuevo para logout.
-        # cada test case tenga solo 1 assert
+
+    def test_logout(self):
+        login_page = LoginPage(self.driver)
+        login_page.login(constants.VALID_USER, constants.VALID_PASSWORD)
+        inventory_page = InventoryPage(self.driver)
         inventory_page.logout()
         self.assertTrue(login_page.validate_logout())
 
@@ -47,6 +50,10 @@ class LoginTest(unittest.TestCase):
         login_page = LoginPage(self.driver)
         login_page.login(constants.LOCKED_USER, constants.VALID_PASSWORD)
         self.assertTrue(login_page.validate_incorrect_password(constants.ERROR_LOCKED_USER))
+
+    def test_url(self):
+        login_page = LoginPage(self.driver)
+        self.assertTrue(login_page.validate_login_url())
 
     def tearDown(self) -> None:
         self.driver.close()

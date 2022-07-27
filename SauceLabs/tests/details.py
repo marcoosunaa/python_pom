@@ -1,3 +1,5 @@
+import random
+
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service
 
@@ -20,8 +22,10 @@ class DetailsTest(unittest.TestCase):
 
     def test_url(self):
         inventory_page = InventoryPage(self.driver)
-
-
+        position = inventory_page.get_random_number()
+        inventory_page.click_on_inventory_item_title(position)
+        details_page = DetailsPage(self.driver)
+        self.assertTrue(details_page.validate_details_url())
 
     def tearDown(self) -> None:
         self.driver.close()

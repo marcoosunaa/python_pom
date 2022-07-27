@@ -3,6 +3,8 @@ CHROME_PATH = 'C:/Users/marco/PycharmProjects/python_pom/Drivers/chromedriver.ex
 SAUCE_DEMO_URL = 'https://www.saucedemo.com/'
 ABOUT_SAUCE_URL = 'https://saucelabs.com/'
 INVENTORY_URL = 'https://www.saucedemo.com/inventory.html'
+DETAILS_URL = 'https://www.saucedemo.com/inventory-item.html?id='
+# USERS
 VALID_USER = 'standard_user'
 LOCKED_USER = 'locked_out_user'
 VALID_PASSWORD = 'secret_sauce'
