@@ -8,8 +8,7 @@ from SauceLabs.pages.login_page import LoginPage
 import unittest
 
 
-class InventoryTest(unittest.TestCase):
-
+class DetailsTest(unittest.TestCase):
     def setUp(self) -> None:
         self.service = Service(constants.CHROME_PATH)
         self.driver = webdriver.Chrome(service=self.service)
@@ -21,18 +20,9 @@ class InventoryTest(unittest.TestCase):
 
     def test_url(self):
         inventory_page = InventoryPage(self.driver)
-        self.assertTrue(inventory_page.validate_inventory_url())
 
-    def test_compare_inventory_vs_details(self):
-        inventory_page = InventoryPage(self.driver)
-        # obtener un item por posicion
-        inventory_item = inventory_page.get_current_inventory_item_text('Sauce Labs Fleece Jacket')
-        inventory_page.click_on_inventory_item_title('Sauce Labs Fleece Jacket')
-        details_page = DetailsPage(self.driver)
-        details_item = details_page.get_details_text()
-        self.assertEqual(inventory_item, details_item, constants.ERROR_INVENTORY_VS_DETAILS)
+
 
     def tearDown(self) -> None:
         self.driver.close()
         self.driver.quit()
-
