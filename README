@@ -1,0 +1,15 @@
+-- EXECUTE TEST CASES FROM CONSOLE --
+1 - Open console from IDE or open cmd and navigate to project folder.
+2 - Run the below command lines:
+
+all test cases on a file
+pytest -v SauceLabs\tests\"file_name".py --browser "browser" --html=report.html --self-contained-html
+example: pytest -v SauceLabs\tests\test_details.py --browser chrome --html=report.html --self-contained-html
+
+single test case
+pytest -v SauceLabs\tests\"file_name".py::"class_name"::"test_case_name" --browser "browser" --html=report.html --self-contained-html
+example: pytest -v SauceLabs\tests\test_inventory.py::TestInventoryPage::test_url --browser chrome --html=report.html --self-contained-html
+
+marked test cases
+pytest -vm navigation SauceLabs\tests\ --browser "browser" --html=report.html --self-contained-html
+example: pytest -m navigation SauceLabs\tests\ --browser chrome --html=report.html --self-contained-html
