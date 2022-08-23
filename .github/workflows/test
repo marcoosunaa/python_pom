@@ -1,0 +1,13 @@
+name: test
+
+on:
+  - push
+  - pull_request
+
+jobs:
+  test:
+    name: test
+    runs-on: windows-latest
+    steps:
+      - name: checkout code
+        uses: actions/checkout@v2
