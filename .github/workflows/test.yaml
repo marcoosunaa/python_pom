@@ -1,4 +1,4 @@
-name: Python packag
+name: Python package
 
 on: [push]
 
@@ -22,4 +22,4 @@ jobs:
           pip install -r requirements.txt
       - name: Test with pytest
         run: |
-          pytest -m navigation SauceLabs/tests/ --browser chrome
+          pytest -m navigation SauceLabs\tests\ --browser chrome
