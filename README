@@ -4,7 +4,7 @@
 
 all test cases on a file
 pytest -v SauceLabs\tests\"file_name".py --browser "browser" --html=report.html --self-contained-html
-example: pytest -v SauceLabs\tests\ --browser chrome --html=report.html --self-contained-html
+pytest -v SauceLabs\tests\"file_name".py --browser "browser" --html=report.html --self-contained-html
 
 single test case
 pytest -v SauceLabs\tests\"file_name".py::"class_name"::"test_case_name" --browser "browser" --html=report.html --self-contained-html
