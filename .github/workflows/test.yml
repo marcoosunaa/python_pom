@@ -24,4 +24,4 @@ jobs:
           pip3 install webdriver_manager
       - name: Test with pytest
         run: |
-          pytest -m navigation SauceLabs\\tests\\
+          pytest -m navigation SauceLabs
