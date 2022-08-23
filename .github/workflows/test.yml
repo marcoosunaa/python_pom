@@ -22,6 +22,7 @@ jobs:
           pip install pytest
           pip install selenium
           pip3 install webdriver_manager
+          pip install -r requirements.txt pytest
       - name: Test with pytest
         run: |
           pytest -m navigation SauceLabs
