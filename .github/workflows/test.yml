@@ -23,5 +23,5 @@ jobs:
         run: |
           pip install pytest
           pip install selenium
-          pip install webdrivermanager
+          pip3 install webdriver_manager
           pytest
