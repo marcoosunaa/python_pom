@@ -22,4 +22,6 @@ jobs:
           pip install -r requirements.txt
       - name: Test with pytest
         run: |
-          pytest -m navigation 'SauceLabs//tests//' --browser chrome --html=report.html --self-contained-html
+          python pytest -m navigation 'SauceLabs/tests/' --browser chrome --html=report.html --self-contained-html
+        with:
+          args: "--browser chrome"
