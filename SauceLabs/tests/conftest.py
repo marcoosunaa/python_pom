@@ -13,19 +13,25 @@ os.environ['GH_TOKEN'] = constants.GH_TOKEN
 
 @pytest.fixture(autouse=True)
 def setup(request, browser):
-    if browser == 'chrome':
-        driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
-    elif browser == 'firefox':
-        driver = webdriver.Firefox(service=FirefoxService(GeckoDriverManager().install()))
-    elif browser == 'edge':
-        driver = webdriver.Edge(service=EdgeService(EdgeChromiumDriverManager().install()))
-    driver.implicitly_wait(10)
-    driver.maximize_window()
-    driver.get(constants.SAUCE_DEMO_URL)
-    request.cls.driver = driver
-    yield
-    driver.close()
-    driver.quit()
+    try:
+        if browser == 'chrome':
+            driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+        elif browser == 'firefox':
+            driver = webdriver.Firefox(service=FirefoxService(GeckoDriverManager().install()))
+        elif browser == 'edge':
+            driver = webdriver.Edge(service=EdgeService(EdgeChromiumDriverManager().install()))
+        driver.implicitly_wait(10)
+        driver.maximize_window()
+        driver.get(constants.SAUCE_DEMO_URL)
+        request.cls.driver = driver
+
+        yield
+        driver.close()
+        driver.quit()
+
+
+    except NoSuchElementException:
+        time.sleep(2)
 
 
 def pytest_addoption(parser):
