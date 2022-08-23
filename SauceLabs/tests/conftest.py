@@ -13,7 +13,6 @@ os.environ['GH_TOKEN'] = constants.GH_TOKEN
 
 @pytest.fixture(autouse=True)
 def setup(request, browser):
-    driver = ''
     if browser == 'chrome':
         driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
     elif browser == 'firefox':
