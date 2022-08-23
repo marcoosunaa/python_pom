@@ -5,7 +5,7 @@ on: push
 jobs:
   test:
     name: test
-    runs-on: windows-latest
+    runs-on: self-hosted
     steps:
       - name: checkout code
         uses: actions/checkout@v2
